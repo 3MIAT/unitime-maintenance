@@ -13,10 +13,9 @@ Team contributors:
 
 | Name | GitHub username | Role |
 | --- | --- | --- |
-| TODO | TODO | Maintainer / reviewer |
+| Mahmoud Magdy | TODO | Maintainer / reviewer |
 | TODO | TODO | Developer |
 | TODO | TODO | Developer |
-| TODO | TODO | Developer, if team has 4 members |
 
 Repository workflow:
 
