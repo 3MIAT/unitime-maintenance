@@ -11,27 +11,14 @@ Repository URL: https://github.com/3MIAT/unitime-maintenance.git
 
 Team contributors:
 
-| Name | GitHub username | Role |
-| --- | --- | --- |
-| TODO | TODO | Maintainer / reviewer |
-| TODO | TODO | Developer |
-| TODO | TODO | Developer |
-| TODO | TODO | Developer, if team has 4 members |
+| Name            | GitHub username | Role      |
+---------------------------------------------------------------
+| Mahmoud Magdy   | 3MIAT           |  reviewer |
+| Mohammed Nadem  | mrm9393         | Developer |
+| Abdelrahman Amr | abdo610amr      | Developer |
 
-Repository workflow:
 
-1. Every change is implemented on a feature branch.
-2. Every branch is pushed to GitHub and opened as a pull request.
-3. A different team member reviews the pull request before merge.
-4. Each pull request links to the related ticket from the ticketing system.
-5. Static analysis and build checks are attached to the pull request when possible.
 
-Current local note: if the checked-out repository still has `origin` set to `https://github.com/UniTime/unitime.git`, replace it with your team repository before pushing:
-
-```powershell
-git remote set-url origin https://github.com/<owner>/<repo>.git
-git remote -v
-```
 
 ## 2. System Description and Requirements
 
@@ -39,16 +26,16 @@ UniTime is a comprehensive university timetabling system. It helps academic inst
 
 As understood from the existing project, the backend requirements include:
 
-| Area | Requirement |
-| --- | --- |
-| Course timetabling | Maintain course offerings, classes, meetings, departments, subject areas, instructional types, and class relationships. |
-| Examination timetabling | Schedule examinations while considering rooms, time periods, instructors, students, and exam conflicts. |
-| Student scheduling | Assign students to class sections based on course requests, availability, limits, and conflict minimization. |
-| Instructor scheduling | Manage instructor assignments, teaching preferences, availability, and assignment conflicts. |
-| Room and event management | Manage rooms, room features, room availability, non-class events, and room sharing. |
-| Preferences and constraints | Store and evaluate time, room, distribution, instructor, and student-related preferences during scheduling. |
-| Reporting and exports | Provide reports and XML-based import/export interfaces for institutional data exchange. |
-| Administration | Support academic sessions, departments, users, roles, permissions, configuration, and system maintenance tasks. |
+| Area                       |                                                     Requirement                                                                    |
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Course timetabling          | Maintain course offerings, classes, meetings, departments, subject areas, instructional types, and class relationships.           |
+| Examination timetabling     | Schedule examinations while considering rooms, time periods, instructors, students, and exam conflicts.                           |
+| Student scheduling          | Assign students to class sections based on course requests, availability, limits, and conflict minimization.                      |
+| Instructor scheduling       | Manage instructor assignments, teaching preferences, availability, and assignment conflicts.                                      |
+| Room and event management   | Manage rooms, room features, room availability, non-class events, and room sharing.                                               |
+| Preferences and constraints | Store and evaluate time, room, distribution, instructor, and student-related preferences during scheduling.                       |
+| Reporting and exports       | Provide reports and XML-based import/export interfaces for institutional data exchange.                                           |
+| Administration              | Support academic sessions, departments, users, roles, permissions, configuration, and system maintenance tasks.                   |
 
 The maintenance project focuses only on the Java backend, so proposed changes should be implemented in Java services, models, actions, solver logic, reports, or backend validation code rather than front-end redesign.
 
@@ -62,14 +49,7 @@ Tooling plan:
 
 The local machine did not have `mvn`, `ant`, `sonar-scanner`, `pmd`, `checkstyle`, or `spotbugs` available on PATH at preparation time. Because of that, the baseline report includes a lightweight local scan using PowerShell pattern checks. Run SonarQube from a machine with the scanner installed before final submission and attach/export the Sonar report screenshots or PDF.
 
-Suggested Sonar command:
 
-```powershell
-sonar-scanner `
-  -Dsonar.projectKey=unitime-maintenance `
-  -Dsonar.host.url=http://localhost:9000 `
-  -Dsonar.token=<your-token>
-```
 
 ## 4. Proposed Change Requests
 
