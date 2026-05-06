@@ -1,115 +1,84 @@
 # Phase 1 Change Requests
 
-These change requests are intentionally backend-focused because the assignment scope excludes front-end work. Use one ticket per change request in GitHub Issues, Jira, Bugzilla, or another approved free ticketing system.
+These change requests are intentionally backend-focused because the assignment scope excludes front-end work. The team used Jira Cloud to register and track each change request.
 
-## CR-01 - Validate Duplicate Instructor Assignments Before Saving
+## CR-01 - Improve Room Availability Validation Message Details
+
+Type: Existing feature change  
+Priority: High  
+Suggested owner: Abdelrahman Amr  
+Ticket URL: https://unitime-maintenance-1.atlassian.net/browse/KAN-1
+
+### Motivation
+
+Room availability problems are common in scheduling systems. Vague validation messages slow down administrators because they do not clearly show which room, date, time, event, or class caused the conflict.
+
+### Proposed Change
+
+Improve backend validation messages for room availability conflicts so the response includes actionable details such as room name, conflicting time, related event/class, and academic session when available.
+
+### Acceptance Criteria
+
+- Room availability conflict messages include clearer details.
+- Existing validation behavior remains unchanged except for message content.
+- Manual validation or tests show the old and new message behavior.
+
+### Ticket Updates
+
+| Date | Status | Note |
+| --- | --- | --- |
+| 2026-05-06 | In Progress | Change request registered in Jira for Phase 1. |
+
+## CR-02 - Validate Negative or Invalid Class Limits
 
 Type: Bug fix / validation improvement  
 Priority: Medium  
-Suggested owner: TODO  
-Ticket URL: TODO
+Suggested owner: Mohamed Nadeem  
+Ticket URL: https://unitime-maintenance-1.atlassian.net/browse/KAN-2
 
 ### Motivation
 
-Instructor assignment conflicts should be caught as early as possible. If duplicate or conflicting instructor assignments are accepted and only discovered later, schedule managers may waste time debugging solver results or manual scheduling errors.
+Class limits affect student scheduling and course capacity. Invalid class limits, such as negative values, can lead to incorrect scheduling results or inconsistent academic data.
 
 ### Proposed Change
 
-Add or improve backend validation so class/instructor assignment saving checks for duplicate instructor assignment conflicts in the same academic session and reports a clear validation error before persistence.
+Add backend validation to prevent saving invalid class limits, such as negative values or values lower than already assigned/enrolled students when this information is available.
 
 ### Acceptance Criteria
 
-- Backend validation rejects duplicate/conflicting instructor assignments.
-- The validation message identifies the instructor and the conflicting class or time information when available.
-- Existing valid instructor assignments continue to save successfully.
-- Unit or integration-level validation evidence is provided.
+- Negative class limits cannot be saved.
+- Invalid capacity values produce a clear validation error.
+- Valid class limits continue to save normally.
 
 ### Ticket Updates
 
 | Date | Status | Note |
 | --- | --- | --- |
-| 2026-05-06 | Open | Change request proposed for Phase 1. |
+| 2026-05-06 | To Do | Change request registered in Jira for Phase 1. |
 
-## CR-02 - Add Conflict Summary to Course Timetable Export
+## CR-03 - Improve Exception Logging in Backend Operations
 
-Type: Feature addition  
+Type: Bug fix / code quality improvement  
 Priority: Medium  
-Suggested owner: TODO  
-Ticket URL: TODO
+Suggested owner: Mahmoud Magdy  
+Ticket URL: https://unitime-maintenance-1.atlassian.net/browse/KAN-3
 
 ### Motivation
 
-Exported timetable data is more useful when it includes a compact summary of known conflicts. This helps reviewers identify schedule quality issues without manually inspecting multiple reports.
+Weak exception handling makes backend failures difficult to diagnose. Replacing direct `printStackTrace()` usage or swallowed exceptions with proper logging improves maintainability and supports better static analysis results.
 
 ### Proposed Change
 
-Extend the backend export/reporting path for course timetables to include a conflict summary section containing counts for student conflicts, instructor conflicts, and room conflicts where the data is available.
+Replace unsafe or unclear exception handling in selected backend classes with application logging and meaningful error messages.
 
 ### Acceptance Criteria
 
-- Exported timetable data includes a conflict summary.
-- Summary values are generated from backend scheduling/conflict data, not manually entered text.
-- Existing export consumers remain compatible, or compatibility impact is documented.
-- Validation evidence compares export output before and after the change.
+- Selected backend exceptions are logged using the project logging mechanism.
+- Direct `printStackTrace()` usage is reduced in the selected files.
+- Behavior remains unchanged except for improved diagnostics.
 
 ### Ticket Updates
 
 | Date | Status | Note |
 | --- | --- | --- |
-| 2026-05-06 | Open | Change request proposed for Phase 1. |
-
-## CR-03 - Improve Room Availability Validation Message Details
-
-Type: Change to existing feature  
-Priority: High  
-Suggested owner: TODO  
-Ticket URL: TODO
-
-### Motivation
-
-Room availability problems are common in scheduling systems. Vague validation messages slow down administrators because they do not clearly show which room, date, time, or event caused the failure.
-
-### Proposed Change
-
-Improve backend validation messages for room availability conflicts so the response includes actionable details such as room name, conflicting time, event/class reference, and academic session when available.
-
-### Acceptance Criteria
-
-- Room availability conflict messages include enough details for an administrator to identify the issue.
-- Existing validation behavior remains unchanged except for clearer message content.
-- Tests or manual validation demonstrate the old and new message behavior.
-- The implementation avoids exposing sensitive data to users without permission.
-
-### Ticket Updates
-
-| Date | Status | Note |
-| --- | --- | --- |
-| 2026-05-06 | Open | Recommended first implementation because it is useful and lower risk than solver logic changes. |
-
-## CR-04 - Add Audit Log Entry When Class Limit Changes
-
-Type: Feature addition  
-Priority: Medium  
-Suggested owner: TODO  
-Ticket URL: TODO
-
-### Motivation
-
-Class limits affect section capacity and student scheduling outcomes. Recording class limit changes improves traceability and helps administrators understand why schedule capacity changed over time.
-
-### Proposed Change
-
-Add backend audit logging when a class limit is changed, including the class identifier, previous limit, new limit, user, timestamp, and academic session when available.
-
-### Acceptance Criteria
-
-- Changing a class limit creates an audit entry.
-- The entry includes previous and new values.
-- No audit entry is created when the value is unchanged.
-- Validation evidence shows an audit entry after a class limit update.
-
-### Ticket Updates
-
-| Date | Status | Note |
-| --- | --- | --- |
-| 2026-05-06 | Open | Change request proposed for Phase 1. |
+| 2026-05-06 | To Do | Change request registered in Jira for Phase 1. |
